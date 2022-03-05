@@ -241,7 +241,7 @@ void PCSX::Pads::Pad::getButtons(PadData& pad) {
             }
         }
     } else {
-        // Normalize an axis from(-1, 1) to(0, 255) with 128 = center 
+        // Normalize an axis from(-1, 1) to(0, 255) with 128 = center
         const auto axisToUint8 = [](float axis) {
             constexpr float scale = 1.3;
             const float scaledValue = std::clamp<float>(axis * scale, -1.0f, 1.0f);
@@ -418,30 +418,24 @@ void PCSX::Pads::Pad::keyboardEvent(const Events::Keyboard& event) {
 
 bool PCSX::Pads::Pad::configure() {
     static std::function<const char*()> const c_inputDevices[] = {
-        []() { return _("Auto"); },
-        []() { return _("Controller"); },
-        []() { return _("Keyboard"); }
-    };
+        []() { return _("Auto"); }, []() { return _("Controller"); }, []() { return _("Keyboard"); }};
     static std::function<const char*()> const c_buttonNames[] = {
         []() { return _("Cross"); },  []() { return _("Square"); }, []() { return _("Triangle"); },
         []() { return _("Circle"); }, []() { return _("Select"); }, []() { return _("Start"); },
         []() { return _("L1"); },     []() { return _("R1"); },     []() { return _("L2"); },
-        []() { return _("R2"); }
-    };
+        []() { return _("R2"); }};
     static std::function<const char*()> const c_dpadDirections[] = {
-      []() { return _("Up"); },
-      []() { return _("Right"); },
-      []() { return _("Down"); },
-      []() { return _("Left"); },
+        []() { return _("Up"); },
+        []() { return _("Right"); },
+        []() { return _("Down"); },
+        []() { return _("Left"); },
     };
-    static std::function<const char*()> const c_controllerTypes[] = {
-        []() { return _("Digital"); },
-        []() { return _("Analog"); },
-        []() { return _("Negcon (Unimplemented)"); },
-        []() { return _("Mouse (Unimplemented)"); },
-        []() { return _("Gun (Unimplemented)"); },
-        []() { return _("Guncon (Unimplemented"); }
-    };
+    static std::function<const char*()> const c_controllerTypes[] = {[]() { return _("Digital"); },
+                                                                     []() { return _("Analog"); },
+                                                                     []() { return _("Negcon (Unimplemented)"); },
+                                                                     []() { return _("Mouse (Unimplemented)"); },
+                                                                     []() { return _("Gun (Unimplemented)"); },
+                                                                     []() { return _("Guncon (Unimplemented"); }};
 
     bool changed = false;
     changed |= ImGui::Checkbox(_("Connected"), &m_settings.get<SettingConnected>().value);

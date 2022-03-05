@@ -35,14 +35,7 @@ class Pads {
   public:
     enum Port { Port1, Port2 };
     enum class InputType { Auto, Controller, Keyboard };
-    enum class PadType {
-        Digital = 0,
-        Analog,
-        Negcon,
-        Mouse,
-        Gun,
-        Guncon
-    };
+    enum class PadType { Digital = 0, Analog, Negcon, Mouse, Gun, Guncon };
 
     Pads();
     void init();
@@ -116,10 +109,10 @@ class Pads {
         PadSettings;
 
     struct Pad {
-        void readPort(PadData& pad);
-        uint8_t startPoll(const PadData& pad);
+        void readPort(PadData &pad);
+        uint8_t startPoll(const PadData &pad);
         uint8_t poll(uint8_t);
-        void getButtons(PadData& pad);
+        void getButtons(PadData &pad);
         bool isControllerButtonPressed(int button, GLFWgamepadstate *state);
 
         json getCfg();

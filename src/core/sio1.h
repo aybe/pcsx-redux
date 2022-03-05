@@ -38,12 +38,12 @@ class SIO1 {
      *
      * FIFO buffer - not 100% how this will work,
      * spx unclear and the server receives large packets[2048+] at a time.
-     * 
+     *
      * Test and finish interrupts,
      * only RX is tested
-     * 
+     *
      * Add/verify cases for all R/W functions exist in psxhw.cpp
-    */
+     */
 
   public:
     void interrupt();

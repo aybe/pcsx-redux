@@ -41,8 +41,8 @@
 #include "core/psxemulator.h"
 #include "core/psxmem.h"
 #include "core/r3000a.h"
-#include "core/sstate.h"
 #include "core/sio1-server.h"
+#include "core/sstate.h"
 #include "core/web-server.h"
 #include "flags.h"
 #include "gpu/soft/externals.h"
@@ -1391,7 +1391,7 @@ The debugger might be required in some cases.)"));
             changed = true;
             if (debugSettings.get<Emulator::DebugSettings::SIO1Server>()) {
                 g_emulator->m_sio1Server->startServer(&g_emulator->m_loop,
-                                                     debugSettings.get<Emulator::DebugSettings::SIO1ServerPort>());
+                                                      debugSettings.get<Emulator::DebugSettings::SIO1ServerPort>());
             } else {
                 g_emulator->m_sio1Server->stopServer();
             }
@@ -1508,9 +1508,21 @@ debugging features may not work)");
 
 void PCSX::GUI::interruptsScaler() {
     if (!m_showInterruptsScaler) return;
-    static const char* names[] = {
-        "SIO", "SIO1"  "CDR",         "CDR Read", "GPU DMA", "MDEC Out DMA",       "SPU DMA",      "GPU Busy",
-        "MDEC In DMA", "GPU OTC DMA", "CDR DMA",  "SPU",     "CDR Decoded Buffer", "CDR Lid Seek", "CDR Play"};
+    static const char* names[] = {"SIO",
+                                  "SIO1"
+                                  "CDR",
+                                  "CDR Read",
+                                  "GPU DMA",
+                                  "MDEC Out DMA",
+                                  "SPU DMA",
+                                  "GPU Busy",
+                                  "MDEC In DMA",
+                                  "GPU OTC DMA",
+                                  "CDR DMA",
+                                  "SPU",
+                                  "CDR Decoded Buffer",
+                                  "CDR Lid Seek",
+                                  "CDR Play"};
     if (ImGui::Begin(_("Interrupt Scaler"), &m_showInterruptsScaler)) {
         if (ImGui::Button(_("Reset all"))) {
             for (auto& scale : g_emulator->m_psxCpu->m_interruptScales) {
